@@ -10,7 +10,7 @@ public class CsvRead {
 
 public void read() throws Exception{
 	
-    String csvFile = "ipl.csv";
+    String csvFile = "/home/sapient/Documents/stsworkspace/DBEngine/ipl.csv";
     BufferedReader br = null;
     String line = "";
     String cvsSplitBy = ",";
@@ -103,3 +103,4 @@ public void read() throws Exception{
 		}
 	}
 }
+

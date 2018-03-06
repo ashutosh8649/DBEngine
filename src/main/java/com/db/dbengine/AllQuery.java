@@ -32,20 +32,23 @@ public class AllQuery {
 			    if(qry.contains("where"))
 			    { 
 			     beforewhere=qry.substring(0, qry.indexOf("where"));
-			     
 			     System.out.println(beforewhere);
 			    }
 		 	  return beforewhere;
 		}
 		
-		public String afterwhr(String qry)
+		public String afterwhr(String qry,String[] sepqry)
 		{	
 			String afterwhr="";
 			System.out.println("afterwhere:");
 			if(qry.contains("where")) {
-			 String afterwhere =qry.substring(qry.indexOf("where")+1,qry.length());
-			 
-			 System.out.println(afterwhere);
+				int i=0;
+				while(!sepqry[i].equals("where")) {i++;}
+				i++;
+				afterwhr=sepqry[i++];
+				while(i<sepqry.length)
+				{afterwhr+=" "+sepqry[i++];}
+			 System.out.println(afterwhr);
 			}
 			return afterwhr;
 		}
@@ -58,8 +61,9 @@ public class AllQuery {
 			String str="";System.out.println("conditions:");
 				while(i<sepqry.length && !(sepqry[i].equals("where"))){i++;}
 				i++;
+				str=sepqry[i++];
 				while(i<sepqry.length && !sepqry[i].equals("groupby")&& !sepqry[i].equals("orderby")){
-					str=str+sepqry[i]+" ";//
+					str+=" "+sepqry[i];//
 					i++;
 				}
 				System.out.println(str);
@@ -85,7 +89,7 @@ public class AllQuery {
 			    return str;
 	}
 		public String ordfld(String[] sepqry,String qry)
-			{			
+	{			
 				int j; String str="";
 				System.out.println("OrderBy field:");
 			    if(qry.contains("orderby"))
@@ -99,9 +103,9 @@ public class AllQuery {
 			 	  }
 			    }
 			    return str;
-			}	     
+	}	     
 		public String aggselp(String[] sepqry)
-		{
+	{
 		      String str="";
 		      System.out.println("Selected Parts/aggregate fileds:");
 		      for(int i=0;i<sepqry.length;i++)
@@ -118,3 +122,4 @@ public class AllQuery {
 		}
 	}
 	
+
